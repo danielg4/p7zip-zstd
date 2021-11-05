@@ -16,9 +16,9 @@ linux-x64:
 mac-x64:
   name: 'Build 7za - Mac x64'
   agent:
+    image: build-system/unity-macos-10.15
+    flavor: b1.small
     type: Unity::VM::osx
-    image: buildfarm/mac:stable
-    flavor: m1.mac
   commands:
     - cp p7zip_*/makefile.macosx_llvm_64bits p7zip_*/makefile.machine
     - cd p7zip_* && make -j "$(sysctl -n hw.ncpu)" 7za
@@ -31,9 +31,9 @@ mac-x64:
 mac-arm64:
   name: 'Build 7za - Mac arm64'
   agent:
+    image: slough-ops/macos-12-base:v0.0.1-914184
+    flavor: b1.small
     type: Unity::VM::osx
-    image: buildfarm/mac:stable
-    flavor: m1.mac
   commands:
     - cp p7zip_*/makefile.macosx_llvm_64bits_arm p7zip_*/makefile.machine
     - cd p7zip_* && make -j "$(sysctl -n hw.ncpu)" 7za
