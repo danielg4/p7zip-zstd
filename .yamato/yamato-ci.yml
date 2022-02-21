@@ -2,7 +2,7 @@ linux-x64:
   name: 'Build 7za - Linux x64'
   agent:
     type: Unity::VM
-    image: cds-ops/cds-ubuntu-18.04-base:stable
+    image: build-system/unity-ubuntu-18.04:v1.0.1-872574
     flavor: b1.small
   commands:
     - sudo apt-get --assume-yes update && sudo apt-get --assume-yes install clang
@@ -47,7 +47,7 @@ publish_public:
   name: 'Upload to public Stevedore'
   agent:
     type: Unity::VM
-    image: cds-ops/cds-ubuntu-18.04-base:stable
+    image: build-system/unity-ubuntu-18.04:v1.0.1-872574
     flavor: b1.small
   commands:
     # Script needs the version string of the source artifact (which must match StevedoreUpload args).
@@ -65,7 +65,7 @@ publish_testing:
   name: 'Upload to testing Stevedore'
   agent:
     type: Unity::VM
-    image: cds-ops/cds-ubuntu-18.04-base:stable
+    image: build-system/unity-ubuntu-18.04:v1.0.1-872574
     flavor: b1.small
   commands:
     # Script needs the version string of the source artifact (which must match StevedoreUpload args).
