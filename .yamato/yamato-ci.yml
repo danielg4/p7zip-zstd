@@ -52,9 +52,10 @@ publish_public:
   commands:
     # Script needs the version string of the source artifact (which must match StevedoreUpload args).
     - ./unity-build-artifacts.sh "$(echo "$GIT_REVISION"|cut -b1-12)"
-    - curl -sSo StevedoreUpload.exe "$STEVEDORE_UPLOAD_TOOL_URL"
+    - curl -sSo StevedoreUpload "$STEVEDORE_UPLOAD_TOOL_LINUX_X64_URL"
+    - chmod +x StevedoreUpload
     # Upload source first, then binaries, just in case the upload fails halfway through.
-    - mono StevedoreUpload.exe --repo=public --version-len=12 --version="$GIT_REVISION" stevedore-source/* stevedore-binary/*
+    - ./StevedoreUpload --repo=public --version-len=12 --version="$GIT_REVISION" stevedore-source/* stevedore-binary/*
   dependencies:
     - .yamato/yamato-ci.yml#linux-x64
     - .yamato/yamato-ci.yml#mac-x64
@@ -69,9 +70,10 @@ publish_testing:
   commands:
     # Script needs the version string of the source artifact (which must match StevedoreUpload args).
     - ./unity-build-artifacts.sh "$(echo "$GIT_REVISION"|cut -b1-12)"
-    - curl -sSo StevedoreUpload.exe "$STEVEDORE_UPLOAD_TOOL_URL"
+    - curl -sSo StevedoreUpload "$STEVEDORE_UPLOAD_TOOL_LINUX_X64_URL"
+    - chmod +x StevedoreUpload
     # Upload source first, then binaries, just in case the upload fails halfway through.
-    - mono StevedoreUpload.exe --repo=testing --version-len=12 --version="$GIT_REVISION" stevedore-source/* stevedore-binary/*
+    - ./StevedoreUpload --repo=testing --version-len=12 --version="$GIT_REVISION" stevedore-source/* stevedore-binary/*
   dependencies:
     - .yamato/yamato-ci.yml#linux-x64
     - .yamato/yamato-ci.yml#mac-x64
