@@ -43,8 +43,8 @@ mac-arm64:
       paths:
         - 'artifacts/*'
 
-publish:
-  name: 'Publish 7za Stevedore artifacts, including source (GPL)'
+publish_public:
+  name: 'Upload to public Stevedore'
   agent:
     type: Unity::VM
     image: cds-ops/cds-ubuntu-18.04-base:stable
@@ -59,3 +59,22 @@ publish:
     - .yamato/yamato-ci.yml#linux-x64
     - .yamato/yamato-ci.yml#mac-x64
     - .yamato/yamato-ci.yml#mac-arm64
+
+publish_testing:
+  name: 'Upload to testing Stevedore'
+  agent:
+    type: Unity::VM
+    image: cds-ops/cds-ubuntu-18.04-base:stable
+    flavor: b1.small
+  commands:
+    # Script needs the version string of the source artifact (which must match StevedoreUpload args).
+    - ./unity-build-artifacts.sh "$(echo "$GIT_REVISION"|cut -b1-12)"
+    - curl -sSo StevedoreUpload.exe "$STEVEDORE_UPLOAD_TOOL_URL"
+    # Upload source first, then binaries, just in case the upload fails halfway through.
+    - mono StevedoreUpload.exe --repo=testing --version-len=12 --version="$GIT_REVISION" stevedore-source/* stevedore-binary/*
+  dependencies:
+    - .yamato/yamato-ci.yml#linux-x64
+    - .yamato/yamato-ci.yml#mac-x64
+    - .yamato/yamato-ci.yml#mac-arm64
+  triggers:
+    expression: pull_request.target eq "master"
