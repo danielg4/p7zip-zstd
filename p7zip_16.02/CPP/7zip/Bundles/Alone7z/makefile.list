@@ -175,12 +175,23 @@ SRCS_C=\
   ../../../../C/ZStd/error_private.c \
   ../../../../C/ZStd/fse_compress.c \
   ../../../../C/ZStd/fse_decompress.c \
+  ../../../../C/ZStd/hist.c \
   ../../../../C/ZStd/huf_compress.c \
   ../../../../C/ZStd/huf_decompress.c \
   ../../../../C/ZStd/xxhash.c \
   ../../../../C/ZStd/zstd_common.c \
   ../../../../C/ZStd/zstd_compress.c \
+  ../../../../C/ZStd/zstd_compress_literals.c \
+  ../../../../C/ZStd/zstd_compress_sequences.c \
+  ../../../../C/ZStd/zstd_compress_superblock.c \
+  ../../../../C/ZStd/zstd_ddict.c \
   ../../../../C/ZStd/zstd_decompress.c \
+  ../../../../C/ZStd/zstd_decompress_block.c \
+  ../../../../C/ZStd/zstd_double_fast.c \
+  ../../../../C/ZStd/zstd_fast.c \
+  ../../../../C/ZStd/zstd_lazy.c \
+  ../../../../C/ZStd/zstd_ldm.c \
+  ../../../../C/ZStd/zstd_opt.c \
   ../../../../C/zstdmt/zstdmt_common.c \
   ../../../../C/zstdmt/zstdmt_compress.c \
   ../../../../C/zstdmt/zstdmt_decompress.c \
@@ -248,6 +259,8 @@ fse_compress.o : ../../../../C/ZStd/fse_compress.c
 	$(CC) $(CFLAGS) ../../../../C/ZStd/fse_compress.c
 fse_decompress.o : ../../../../C/ZStd/fse_decompress.c
 	$(CC) $(CFLAGS) ../../../../C/ZStd/fse_decompress.c
+hist.o : ../../../../C/ZStd/hist.c
+	$(CC) $(CFLAGS) ../../../../C/ZStd/hist.c
 huf_compress.o : ../../../../C/ZStd/huf_compress.c
 	$(CC) $(CFLAGS) ../../../../C/ZStd/huf_compress.c
 huf_decompress.o : ../../../../C/ZStd/huf_decompress.c
@@ -258,8 +271,28 @@ zstd_common.o : ../../../../C/ZStd/zstd_common.c
 	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_common.c
 zstd_compress.o : ../../../../C/ZStd/zstd_compress.c
 	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_compress.c
+zstd_compress_literals.o : ../../../../C/ZStd/zstd_compress_literals.c
+	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_compress_literals.c
+zstd_compress_sequences.o : ../../../../C/ZStd/zstd_compress_sequences.c
+	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_compress_sequences.c
+zstd_compress_superblock.o : ../../../../C/ZStd/zstd_compress_superblock.c
+	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_compress_superblock.c
+zstd_ddict.o : ../../../../C/ZStd/zstd_ddict.c
+	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_ddict.c
 zstd_decompress.o : ../../../../C/ZStd/zstd_decompress.c
 	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_decompress.c
+zstd_decompress_block.o : ../../../../C/ZStd/zstd_decompress_block.c
+	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_decompress_block.c
+zstd_double_fast.o : ../../../../C/ZStd/zstd_double_fast.c
+	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_double_fast.c
+zstd_fast.o : ../../../../C/ZStd/zstd_fast.c
+	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_fast.c
+zstd_lazy.o : ../../../../C/ZStd/zstd_lazy.c
+	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_lazy.c
+zstd_ldm.o : ../../../../C/ZStd/zstd_ldm.c
+	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_ldm.c
+zstd_opt.o : ../../../../C/ZStd/zstd_opt.c
+	$(CC) $(CFLAGS) ../../../../C/ZStd/zstd_opt.c
 zstdmt_common.o : ../../../../C/zstdmt/zstdmt_common.c
 	$(CC) $(CFLAGS) ../../../../C/zstdmt/zstdmt_common.c
 zstdmt_compress.o : ../../../../C/zstdmt/zstdmt_compress.c
@@ -548,12 +581,23 @@ OBJS=\
  error_private.o \
  fse_compress.o \
  fse_decompress.o \
+ hist.o \
  huf_compress.o \
  huf_decompress.o \
  xxhash.o \
  zstd_common.o \
  zstd_compress.o \
+ zstd_compress_literals.o \
+ zstd_compress_sequences.o \
+ zstd_compress_superblock.o \
+ zstd_ddict.o \
  zstd_decompress.o \
+ zstd_decompress_block.o \
+ zstd_double_fast.o \
+ zstd_fast.o \
+ zstd_lazy.o \
+ zstd_ldm.o \
+ zstd_opt.o \
  zstdmt_common.o \
  zstdmt_compress.o \
  zstdmt_decompress.o \
